@@ -57,7 +57,7 @@ typedef volatile unsigned char bgrt_syscall_t;
 /**===============================================================*/
 /**     Project specific stuff, you are welcome to edit it!!!*/
 /**===============================================================*/
-#define BGRT_CONFIG_TEST  /*This is test project*/.
+//#define BGRT_CONFIG_TEST  /*This is test project*/.
 #define STM32F4
 #include <libopencmsis/core_cm3.h>
 /*These macros needed to interface cstartup code.*/
@@ -111,9 +111,7 @@ typedef volatile unsigned char bgrt_syscall_t;
 /**================================================================*/
 /**               Don't edit this part of the file!!!              */
 /**================================================================*/
-
-extern void kernel_preemt_hook(void);
-#define BGRT_KERNEL_PREEMPT() kernel_preemt_hook()
+#define BGRT_KERNEL_PREEMPT()
 
 #endif /*__ASSEMBLER__*/
 #endif /*BGRT_CONFIG_H*/

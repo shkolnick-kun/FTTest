@@ -1,24 +1,11 @@
 #include <test_func.h>
 
-float a = 1.0, b=3.14;
-
-void(*test_kernel_preempt)(void) = test_do_nothing;
-
-void kernel_preemt_hook(void)
+void HardFault_Handler(void)
 {
-    test_kernel_preempt();
-}
+    while (1)
+    {
 
-void kernel_preemt_hook_add(void(*arg)(void))
-{
-    BGRT_INT_LOCK();
-    test_kernel_preempt = arg;
-    BGRT_INT_FREE();
-}
-
-void test_do_nothing(void)
-{
-    NOP();
+    }
 }
 
 void init_hardware(void)
@@ -28,112 +15,266 @@ void init_hardware(void)
     /* Enable GPIOC clock. */
     rcc_periph_clock_enable(RCC_GPIOD);
     /* Set GPIO12 (in GPIO port C) to 'output push-pull'. */
-    gpio_mode_setup(GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GREEN | RED);
+    gpio_mode_setup(GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GREEN | RED | BLUE | ORANGE);
     gpio_clear(GPIOD, GREEN);
     gpio_clear(GPIOD, RED);
+    gpio_clear(GPIOD, BLUE);
+    gpio_clear(GPIOD, ORANGE);
 }
 
-void sched_fix_bgrt_proc_2(void)
+static inline void blink(bgrt_tmr_t tm, uint16_t cl)
 {
-    BGRT_INT_LOCK();
-    proc[2].flags &= ~BGRT_PROC_FLG_RT;
-    proc[2].flags &= BGRT_PROC_STATE_CLEAR_MASK;
-    BGRT_INT_FREE();
+    LED_ON(cl);
+    bgrt_wait_time(tm);
+    LED_OFF(cl);
 }
-static void blink_digit(bgrt_cnt_t digit)
-{
-    LED_OFF(RED);
-    bgrt_wait_time(200);
 
-    if (!digit)
+void blink_letter(const char * sym, uint16_t cl)
+{
+    do {
+        switch(*sym)
+        {
+        case '.':
+        {
+            blink(TM_DOT, cl);
+            break;
+        }
+        case '-':
+        {
+            blink(TM_DASH, cl);
+            break;
+        }
+        case 0:
+        {
+            break;
+        }
+        default:
+        {
+            return;
+        }
+        }
+        bgrt_wait_time(TM_LETTER);
+    } while (*sym++);
+    bgrt_wait_time(TM_WORD);
+}
+
+void blink_char(char c, uint16_t cl)
+{
+    switch(c)
     {
-        LED_ON(RED);
-        bgrt_wait_time(1000);
-        LED_OFF(RED);
+    case 'A':
+    case 'a':
+    {
+        blink_letter(".-", cl);
+        break;
+    }
+    case 'B':
+    case 'b':
+    {
+        blink_letter("-...", cl);
+        break;
+    }
+    case 'C':
+    case 'c':
+    {
+        blink_letter("-.-.", cl);
+        break;
+    }
+    case 'D':
+    case 'd':
+    {
+        blink_letter("-..", cl);
+        break;
+    }
+    case 'E':
+    case 'e':
+    {
+        blink_letter(".", cl);
+        break;
+    }
+    case 'F':
+    case 'f':
+    {
+        blink_letter("..-.", cl);
+        break;
+    }
+    case 'G':
+    case 'g':
+    {
+        blink_letter("--.", cl);
+        break;
+    }
+    case 'H':
+    case 'h':
+    {
+        blink_letter("....", cl);
+        break;
+    }
+    case 'I':
+    case 'i':
+    {
+        blink_letter("..", cl);
+        break;
+    }
+    case 'J':
+    case 'j':
+    {
+        blink_letter(".---", cl);
+        break;
+    }
+    case 'K':
+    case 'k':
+    {
+        blink_letter("-.-", cl);
+        break;
+    }
+    case 'L':
+    case 'l':
+    {
+        blink_letter(".-..", cl);
+        break;
+    }
+    case 'M':
+    case 'm':
+    {
+        blink_letter("--", cl);
+        break;
+    }
+    case 'N':
+    case 'n':
+    {
+        blink_letter("-.", cl);
+        break;
+    }
+    case 'O':
+    case 'o':
+    {
+        blink_letter("---", cl);
+        break;
+    }
+    case 'P':
+    case 'p':
+    {
+        blink_letter(".--.", cl);
+        break;
+    }
+    case 'Q':
+    case 'q':
+    {
+        blink_letter("--.-", cl);
+        break;
+    }
+    case 'R':
+    case 'r':
+    {
+        blink_letter(".-.", cl);
+        break;
+    }
+    case 'S':
+    case 's':
+    {
+        blink_letter("...", cl);
+        break;
+    }
+    case 'T':
+    case 't':
+    {
+        blink_letter("-", cl);
+        break;
+    }
+    case 'U':
+    case 'u':
+    {
+        blink_letter("..-", cl);
+        break;
+    }
+    case 'V':
+    case 'v':
+    {
+        blink_letter("...-", cl);
+        break;
+    }
+    case 'W':
+    case 'w':
+    {
+        blink_letter(".--", cl);
+        break;
+    }
+    case 'X':
+    case 'x':
+    {
+        blink_letter("-..-", cl);
+        break;
+    }
+    case 'Y':
+    case 'y':
+    {
+        blink_letter("-.--", cl);
+        break;
+    }
+    case 'Z':
+    case 'z':
+    {
+        blink_letter("--..", cl);
+        break;
+    }
+    case '1':
+    {
+        blink_letter(".----", cl);
+        break;
+    }
+    case '2':
+    {
+        blink_letter("..---", cl);
+        break;
+    }
+    case '3':
+    {
+        blink_letter("...--", cl);
+        break;
+    }
+    case '4':
+    {
+        blink_letter("....-", cl);
+        break;
+    }
+    case '5':
+    {
+        blink_letter(".....", cl);
+        break;
+    }
+    case '6':
+    {
+        blink_letter("-....", cl);
+        break;
+    }
+    case '7':
+    {
+        blink_letter("--...", cl);
+        break;
+    }
+    case '8':
+    {
+        blink_letter("---..", cl);
+        break;
+    }
+    case '9':
+    {
+        blink_letter("----.", cl);
+        break;
+    }
+    case '0':
+    {
+        blink_letter("-----", cl);
+        break;
+    }
+    case ' ':
+    {
+        bgrt_wait_time(TM_SPACE);
+    }
+    default:
+    {
         return;
     }
-
-    while (digit--)
-    {
-        LED_ON(RED);
-        bgrt_wait_time(200);
-        LED_OFF(RED);
-        bgrt_wait_time(200);
     }
-}
-// Can blink numbers from 0 up to 99.
-static void blink_num(bgrt_cnt_t num)
-{
-    LED_OFF(RED);
-    blink_digit((num/10)%10); // Most significant digit
-    bgrt_wait_time(300);
-    blink_digit(num%10); //Least significant digit
-
-}
-void test_output(bgrt_bool_t test_result, bgrt_cnt_t test_num)
-{
-    // If test has failed, then where will be abnormal program termination!
-    if (!test_result)
-    {
-        LED_OFF(GREEN);
-        while (1)
-        {
-            bgrt_wait_time(500);
-            blink_num(test_num);
-        }
-    }
-}
-void test_start(void)
-{
-    LED_ON(GREEN);
-}
-void tests_end(void)
-{
-    LED_OFF(GREEN);
-    bgrt_wait_time(1000);
-    while (1)
-    {
-        LED_ON(GREEN);
-        bgrt_wait_time(500);
-        LED_OFF(GREEN);
-        bgrt_wait_time(500);
-    }
-}
-
-unsigned char test_var_sig;
-void test_clear(void)
-{
-    BGRT_INT_LOCK();
-    test_var_sig = 0;
-    BGRT_INT_FREE();
-}
-void test_inc(void)
-{
-    BGRT_INT_LOCK();
-    test_var_sig++;
-    BGRT_INT_FREE();
-}
-void systick_hook(void)
-{
-    NOP();
-}
-
-void HardFault_Handler(void)
-{
-    while (1)
-    {
-
-    }
-}
-
-void float_test_1(void)
-{
-    a+=1.735;
-    if (a >= 178.0) a = 1.11;
-}
-
-void float_test_2(void)
-{
-    b*=1.005;
-    if (b >= 178.0) b = 1.17;
 }

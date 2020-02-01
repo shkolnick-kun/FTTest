@@ -1,5 +1,7 @@
 #include <test_func.h>
-#include <sem.h>
+#include <xprintf.h>
+//#include <sem.h>
+
 
 volatile char __attribute__ ((section (".padding_data"))) padding[0x1234] = {0};
 volatile char __attribute__ ((section (".hello_data")))   hello[]  = "HELLO WORLD";
@@ -7,14 +9,35 @@ volatile char __attribute__ ((section (".hello_data")))   hello[]  = "HELLO WORL
 bgrt_proc_t proc[6];
 bgrt_stack_t bgrt_proc_stack[6][BGRT_PROC_STACK_SIZE];
 
-bgrt_sem_t test_sem;
+//bgrt_sem_t test_sem;
+
+static uint16_t color = RED;
+
+static void print(char c)
+{
+    blink_char(c, color);
+}
 
 void main_with_return(void * arg)
 {
     (void)arg;
 
-    BGRT_PROC_RUN(PID1);
 
+    //BGRT_PROC_RUN(PID1);
+
+    xdev_out(print);
+    xprintf("%s", hello);
+
+    LED_ON(ORANGE);
+    bgrt_wait_time(1000);
+    LED_ON(GREEN);
+    bgrt_wait_time(1000);
+    LED_ON(BLUE);
+    bgrt_wait_time(1000);
+    LED_ON(RED);
+
+
+    /*
     test_start();
 
     //bgrt_sem_try_lock test 1
@@ -59,28 +82,32 @@ void main_with_return(void * arg)
     BGRT_PROC_RUN(PID2);
 
     tests_end();
+    */
 }
-void main_lb(void * arg)
-{
-    (void)arg;
-    while (1)
-    {
-        bgrt_wait_time(10);
-        // Run local load balancer on multicore system with local load balancing.
-        BGRT_SCHED_LOCAL_LOAD_BALANCER();
-    }
-}
-void main_sem(void * arg)
-{
-    (void)arg;
-    while (1)
-    {
-        bgrt_sem_lock(&test_sem);
-        BGRT_PROC_SELF_STOP();
-        bgrt_sem_free(&test_sem);
-        BGRT_PROC_SELF_STOP();
-    }
-}
+//void main_lb(void * arg)
+//{
+//    (void)arg;
+//    while (1)
+//    {
+//        bgrt_wait_time(10);
+//        // Run local load balancer on multicore system with local load balancing.
+//        //BGRT_SCHED_LOCAL_LOAD_BALANCER();
+//    }
+//}
+//void main_sem(void * arg)
+//{
+//    (void)arg;
+//    while (1)
+//    {
+//        bgrt_wait_time(10);
+//        /*
+//        bgrt_sem_lock(&test_sem);
+//        BGRT_PROC_SELF_STOP();
+//        bgrt_sem_free(&test_sem);
+//        BGRT_PROC_SELF_STOP();
+//        */
+//    }
+//}
 
 int main(void)
 {
@@ -96,11 +123,11 @@ int main(void)
     init_hardware();
     bgrt_init();
 
-    bgrt_priv_proc_init(PR0, main_with_return,   SVH0, RSH0, 0, &bgrt_proc_stack[0][BGRT_PROC_STACK_SIZE-1], 1,      1, 0 ARG_END);
-    bgrt_priv_proc_init(PR1, main_lb,            SVH1, RSH1, 0, &bgrt_proc_stack[1][BGRT_PROC_STACK_SIZE-1], LOWEST, 1, 0 BGRT_SCHED_ARG_END);
-    bgrt_priv_proc_init(PR2, main_sem,           SVH2, RSH2, 0, &bgrt_proc_stack[2][BGRT_PROC_STACK_SIZE-1], 0,      2, 0 ARG_END);
+    bgrt_priv_proc_init(PR0, main_with_return,   SVH0, RSH0, 0, &bgrt_proc_stack[0][BGRT_PROC_STACK_SIZE-1], 1,      1, 0);
+    //bgrt_priv_proc_init(PR1, main_lb,            SVH1, RSH1, 0, &bgrt_proc_stack[1][BGRT_PROC_STACK_SIZE-1], LOWEST, 1, 0);
+    //bgrt_priv_proc_init(PR2, main_sem,           SVH2, RSH2, 0, &bgrt_proc_stack[2][BGRT_PROC_STACK_SIZE-1], 0,      2, 0);
 
-    bgrt_sem_init_cs(&test_sem, 1);
+    //bgrt_sem_init_cs(&test_sem, 1);
 
     bgrt_priv_proc_run(PR0);
 
