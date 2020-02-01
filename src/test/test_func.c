@@ -50,6 +50,7 @@ void blink_letter(const char * sym, uint16_t cl)
         }
         default:
         {
+            while(1);/*WHOOOOOPSS!!!*/
             return;
         }
         }
@@ -271,9 +272,11 @@ void blink_char(char c, uint16_t cl)
     case ' ':
     {
         bgrt_wait_time(TM_SPACE);
+        break;
     }
     default:
     {
+        while(1);/*WHOOOOOPSS!!!*/
         return;
     }
     }
