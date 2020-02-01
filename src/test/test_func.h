@@ -6,7 +6,7 @@
 //#include <libopencm3/cm3/nvic.h>
 //#include <libopencm3/stm32/exti.h>
 
-/*LEDS*/
+/* stm32f4-discovery LEDS */
 #define GREEN  GPIO12
 #define ORANGE GPIO13
 #define RED    GPIO14

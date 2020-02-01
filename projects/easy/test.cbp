@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="sem" />
+		<Option title="easy" />
 		<Option pch_mode="2" />
 		<Option compiler="armnoneeabigcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/sem.elf" prefix_auto="1" extension_auto="0" />
+				<Option output="bin/Debug/easy.elf" prefix_auto="1" extension_auto="0" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="armnoneeabigcc" />
@@ -17,7 +17,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/sem.elf" prefix_auto="1" extension_auto="0" />
+				<Option output="bin/Release/easy.elf" prefix_auto="1" extension_auto="0" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="armnoneeabigcc" />

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="FT-test">
+		<Project filename="easy/test.cbp" />
+		<Project filename="medium/test.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>
