@@ -5,5 +5,3 @@ This is FT test project. Let's write this "Hello world!"
  * Easy mode
  * Medium mode
  * Hard mode
-
-Need a brake!
