@@ -96,7 +96,6 @@ void main_print(void * arg)
 
         st = bgrt_sem_free(&produce);
         while (BGRT_ST_OK != st);/*Panic*/
-        //bgrt_sem_free(&produce);
     }
 }
 

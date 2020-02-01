@@ -125,6 +125,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../../src/bugurtos/kernel/xlist.h" />
+		<Unit filename="../../src/bugurtos/libs/native/ipc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/bugurtos/libs/native/ipc.h" />
 		<Unit filename="../../src/bugurtos/libs/native/sem.c">
 			<Option compilerVar="CC" />
 		</Unit>
