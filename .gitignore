@@ -8,7 +8,7 @@
 *.rel
 
 # Compiled Static libraries
-*.a
+#*.a
 *.lib
 
 # Linker outputs
