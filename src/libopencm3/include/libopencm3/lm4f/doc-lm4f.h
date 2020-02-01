@@ -1,4 +1,4 @@
-/** @page libopencm3 LM4F
+/** @mainpage libopencm3 LM4F
 
 @version 1.0.0
 

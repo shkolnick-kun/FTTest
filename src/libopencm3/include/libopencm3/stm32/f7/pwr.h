@@ -292,6 +292,4 @@ void pwr_disable_overdrive(void);
 
 END_DECLS
 
-/**@}*/
-
 #endif

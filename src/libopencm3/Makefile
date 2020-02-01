@@ -17,7 +17,8 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-PREFIX		?= arm-none-eabi-
+PREFIX		?= arm-none-eabi
+#PREFIX		?= arm-elf
 
 STYLECHECK      := scripts/checkpatch.pl
 STYLECHECKFLAGS := --no-tree -f --terse --mailback
@@ -26,18 +27,14 @@ space:=
 space+=
 SRCLIBDIR:= $(subst $(space),\$(space),$(realpath lib))
 
-TARGETS ?=	stm32/f0 stm32/f1 stm32/f2 stm32/f3 stm32/f4 stm32/f7 \
-		stm32/l0 stm32/l1 stm32/l4 \
-		stm32/g0 \
-		gd32/f1x0 \
-		lpc13xx lpc17xx lpc43xx/m4 lpc43xx/m0 \
-		lm3s lm4f msp432/e4 \
-		efm32/tg efm32/g efm32/lg efm32/gg efm32/hg efm32/wg \
-		efm32/ezr32wg \
-		sam/3a sam/3n sam/3s sam/3u sam/3x sam/4l \
-		sam/d \
-		vf6xx \
-		swm050
+TARGETS := stm32/f0 stm32/f1 stm32/f2 stm32/f3 stm32/f4 stm32/f7
+TARGETS += stm32/l0 stm32/l1 stm32/l4
+TARGETS += lpc13xx lpc17xx lpc43xx/m4 lpc43xx/m0
+TARGETS += lm3s lm4f
+TARGETS += efm32/tg efm32/g efm32/lg efm32/gg efm32/hg
+TARGETS += sam/3a sam/3n sam/3s sam/3u sam/3x
+TARGETS += sam/d
+TARGETS += vf6xx
 
 # Be silent per default, but 'make V=1' will show all compiler calls.
 ifneq ($(V),1)
@@ -47,7 +44,8 @@ MAKEFLAGS += --no-print-directory
 endif
 
 # Avoid the use of shell find, for windows compatibility
-IRQ_DEFN_FILES  := $(foreach TARGET,$(TARGETS),$(wildcard include/libopencm3/$(TARGET)/irq.json))
+IRQ_DEFN_FILES	:= $(wildcard include/libopencm3/*/irq.json)
+IRQ_DEFN_FILES	+= $(wildcard include/libopencm3/*/*/irq.json)
 STYLECHECKFILES := $(wildcard include/*/*.h include/*/*/*.h include/*/*/*/*.h)
 STYLECHECKFILES += $(wildcard lib/*/*.h lib/*/*/*.h lib/*/*/*/*.h)
 STYLECHECKFILES += $(wildcard lib/*/*.c lib/*/*/*.c lib/*/*/*/*.c)
@@ -58,28 +56,22 @@ build: lib
 
 %.genhdr:
 	@printf "  GENHDR  $*\n";
-	$(Q)./scripts/irq2nvic_h ./$*;
+	@./scripts/irq2nvic_h ./$*;
 
 %.cleanhdr:
 	@printf "  CLNHDR  $*\n";
-	$(Q)./scripts/irq2nvic_h --remove ./$*
+	@./scripts/irq2nvic_h --remove ./$*
 
 LIB_DIRS:=$(wildcard $(addprefix lib/,$(TARGETS)))
 $(LIB_DIRS): $(IRQ_DEFN_FILES:=.genhdr)
-	$(Q)$(RM) .stamp_failure_$(subst /,_,$@)
 	@printf "  BUILD   $@\n";
-	$(Q)$(MAKE) --directory=$@ SRCLIBDIR="$(SRCLIBDIR)" PREFIX="$(PREFIX)" || \
-		echo "Failure building: $@: code: $$?" > .stamp_failure_$(subst /,_,$@)
+	$(Q)$(MAKE) --directory=$@ SRCLIBDIR="$(SRCLIBDIR)"
 
 lib: $(LIB_DIRS)
-	$(Q)$(RM) .stamp_failure_tld
-	$(Q)for failure in .stamp_failure_*; do \
-		[ -f $$failure ] && cat $$failure >> .stamp_failure_tld || true; \
-	done;
-	$(Q)[ -f .stamp_failure_tld ] && cat .stamp_failure_tld && exit 1 || true;
+	$(Q)true
 
 html doc:
-	$(Q)$(MAKE) -C doc html TARGETS="$(TARGETS)"
+	$(Q)$(MAKE) -C doc html
 
 clean: $(IRQ_DEFN_FILES:=.cleanhdr) $(LIB_DIRS:=.clean) $(EXAMPLE_DIRS:=.clean) doc.clean styleclean genlinktests.clean
 
@@ -88,7 +80,6 @@ clean: $(IRQ_DEFN_FILES:=.cleanhdr) $(LIB_DIRS:=.clean) $(EXAMPLE_DIRS:=.clean) 
 		printf "  CLEAN   $*\n"; \
 		$(MAKE) -C $* clean SRCLIBDIR="$(SRCLIBDIR)" || exit $?; \
 	fi;
-	$(Q)$(RM) .stamp_failure_*;
 
 
 stylecheck: $(STYLECHECKFILES:=.stylecheck)

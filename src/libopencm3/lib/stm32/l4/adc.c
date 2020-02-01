@@ -1,5 +1,8 @@
-/** @addtogroup adc_file ADC peripheral API
-@ingroup peripheral_apis
+/** @defgroup adc_file ADC
+
+@ingroup STM32L4xx
+
+@brief <b>libopencm3 STM32L4xx Analog to Digital Converters</b>
 
 @author @htmlonly &copy; @endhtmlonly 2016 Karl Palsson <karlp@tweak.net.au>
 

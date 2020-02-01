@@ -20,8 +20,10 @@
 LIBNAME		= libopencm3_lpc17xx
 SRCLIBDIR	?= ..
 
-CC		= $(PREFIX)gcc
-AR		= $(PREFIX)ar
+PREFIX		?= arm-none-eabi
+
+CC		= $(PREFIX)-gcc
+AR		= $(PREFIX)-ar
 TGT_CFLAGS	= -Os \
 		  -Wall -Wextra -Wimplicit-function-declaration \
 		  -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes \
@@ -33,9 +35,7 @@ TGT_CFLAGS      += $(DEBUG_FLAGS)
 TGT_CFLAGS	+= $(STANDARD_FLAGS)
 # ARFLAGS	= rcsv
 ARFLAGS		= rcs
-
-OBJS += gpio.o
-OBJS += pwr.o
+OBJS		= gpio.o pwr.o
 
 VPATH += ../cm3
 

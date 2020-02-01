@@ -20,11 +20,7 @@
 #ifndef LIBOPENCM3_CM3_FPB_H
 #define LIBOPENCM3_CM3_FPB_H
 
-/**
- * @defgroup cm_fpb Cortex-M Flash Patch and Breakpoint (FPB) unit
- * @ingroup CM3_defines
- * @{
- */
+/* Cortex-M3 Flash Patch and Breakpoint (FPB) unit */
 
 /* Those defined only on ARMv7 and above */
 #if !defined(__ARM_ARCH_7M__) && !defined(__ARM_ARCH_7EM__)
@@ -45,9 +41,9 @@
 #define FPB_COMP			(&MMIO32(FPB_BASE + 8))
 
 /* CoreSight Lock Status Register for this peripheral */
-#define FPB_LSR				MMIO32(FPB_BASE + CORESIGHT_LSR_OFFSET)
+#define FPB_LSR				MMIO32(FPB_BASE + 0xFB4)
 /* CoreSight Lock Access Register for this peripheral */
-#define FPB_LAR				MMIO32(FPB_BASE + CORESIGHT_LAR_OFFSET)
+#define FPB_LAR				MMIO32(FPB_BASE + 0xFB0)
 
 
 /* TODO: PID, CID */
@@ -87,7 +83,5 @@
 /* Bit 1: Reserved */
 
 #define FPB_COMP_ENABLE			(1 << 0)
-
-/**@}*/
 
 #endif

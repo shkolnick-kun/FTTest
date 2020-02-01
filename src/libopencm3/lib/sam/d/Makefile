@@ -20,8 +20,10 @@
 LIBNAME		= libopencm3_samd
 SRCLIBDIR	?= ../..
 
-CC		= $(PREFIX)gcc
-AR		= $(PREFIX)ar
+PREFIX		?= arm-none-eabi
+
+CC		= $(PREFIX)-gcc
+AR		= $(PREFIX)-ar
 TGT_CFLAGS	= -Os -Wall -Wextra -I../../../include -fno-common \
 		  -mcpu=cortex-m0plus -mthumb $(FP_FLAGS) -Wstrict-prototypes \
 		  -ffunction-sections -fdata-sections -MD -DSAMD

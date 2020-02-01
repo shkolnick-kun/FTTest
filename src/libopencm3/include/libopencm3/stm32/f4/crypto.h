@@ -1,6 +1,6 @@
 /** @defgroup crypto_defines CRYPTO Defines
  *
- * @brief <b>Defined constants and Types for the STM32F4xx Crypto Coprocessor</b>
+ * @brief <b>Defined constants and Types for the STM32F4xx Crypto Coprocessor
  *
  * @ingroup STM32F4xx_defines
  *

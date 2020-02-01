@@ -20,11 +20,7 @@
 #ifndef LIBOPENCM3_CM3_TPIU_H
 #define LIBOPENCM3_CM3_TPIU_H
 
-/**
- * @defgroup cm_tpiu Cortex-M Trace Port Interface Unit (TPIU)
- * @ingroup CM3_defines
- * @{
- */
+/* Cortex-M3 Trace Port Interface Unit (TPIU) */
 
 /* Those defined only on ARMv7 and above */
 #if !defined(__ARM_ARCH_7M__) && !defined(__ARM_ARCH_7EM__)
@@ -55,9 +51,9 @@
 #define TPIU_DEVID			MMIO32(TPIU_BASE + 0xFC8)
 
 /* CoreSight Lock Status Register for this peripheral */
-#define TPIU_LSR			MMIO32(TPIU_BASE + CORESIGHT_LSR_OFFSET)
+#define TPIU_LSR			MMIO32(TPIU_BASE + 0xFB4)
 /* CoreSight Lock Access Register for this peripheral */
-#define TPIU_LAR			MMIO32(TPIU_BASE + CORESIGHT_LAR_OFFSET)
+#define TPIU_LAR			MMIO32(TPIU_BASE + 0xFB0)
 
 /* TODO: PID, CID */
 
@@ -97,7 +93,5 @@
 /* Bit 9 - RAZ, indicated that trace data and clock are supported */
 #define TPUI_DEVID_FIFO_SIZE_MASK	(7 << 6)
 /* Bits 5:0 - Implementation defined */
-
-/**@}*/
 
 #endif

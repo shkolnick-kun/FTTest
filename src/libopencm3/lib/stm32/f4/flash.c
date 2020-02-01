@@ -1,6 +1,6 @@
-/** @defgroup flash_file FLASH peripheral API
+/** @defgroup flash_file FLASH
  *
- * @ingroup peripheral_apis
+ * @ingroup STM32F4xx
  *
  * @brief <b>libopencm3 STM32F4xx FLASH</b>
  *
@@ -48,36 +48,6 @@
 /**@{*/
 
 #include <libopencm3/stm32/flash.h>
-
-void flash_wait_for_last_operation(void)
-{
-	while ((FLASH_SR & FLASH_SR_BSY) == FLASH_SR_BSY);
-}
-
-/*---------------------------------------------------------------------------*/
-/** @brief Clear the Programming Sequence Error Flag
-
-This flag is set when incorrect programming configuration has been made.
-*/
-
-void flash_clear_pgserr_flag(void)
-{
-	FLASH_SR |= FLASH_SR_PGSERR;
-}
-
-/*---------------------------------------------------------------------------*/
-/** @brief Clear All Status Flags
-
-Program error, end of operation, write protect error, busy.
-*/
-void flash_clear_status_flags(void)
-{
-	flash_clear_pgserr_flag();
-	flash_clear_pgaerr_flag();
-	flash_clear_wrperr_flag();
-	flash_clear_pgperr_flag();
-	flash_clear_eop_flag();
-}
 
 /**@}*/
 

@@ -1,5 +1,4 @@
-/** @addtogroup i2c_file I2C peripheral API
- * @ingroup peripheral_apis
+/** @addtogroup i2c_file
 
 @author @htmlonly &copy; @endhtmlonly 2010
 Thomas Otto <tommi@viadmin.org>

@@ -33,6 +33,5 @@
 #define LIBOPENCM3_DMA_H
 
 #include <libopencm3/stm32/common/dma_common_l1f013.h>
-#include <libopencm3/stm32/common/dma_common_csel.h>
 
 #endif

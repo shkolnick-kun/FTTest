@@ -20,8 +20,10 @@
 LIBNAME		= libopencm3_lm3s
 SRCLIBDIR	?= ..
 
-CC		= $(PREFIX)gcc
-AR		= $(PREFIX)ar
+PREFIX		?= arm-none-eabi
+
+CC		= $(PREFIX)-gcc
+AR		= $(PREFIX)-ar
 TGT_CFLAGS	= -Os \
 		  -Wall -Wextra -Wimplicit-function-declaration \
 		  -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes \
@@ -33,12 +35,7 @@ TGT_CFLAGS      += $(DEBUG_FLAGS)
 TGT_CFLAGS	+= $(STANDARD_FLAGS)
 # ARFLAGS	= rcsv
 ARFLAGS		= rcs
-
-OBJS += assert.o
-OBJS += gpio.o
-OBJS += rcc.o
-OBJS += usart.o
-OBJS += vector.o
+OBJS		= gpio.o vector.o assert.o rcc.o usart.o
 
 VPATH += ../cm3
 

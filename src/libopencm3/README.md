@@ -40,7 +40,9 @@ _TIP_: Include this repository as a Git submodule in your project to make sure
 Prerequisites
 -------------
 
-Building requires Python (Some code is generated).
+Building requires Python (some code is generated).
+If your user application uses the (optional) dynamic linker script generator,
+you will (presently) need GNU AWK.  Please see https://github.com/libopencm3/libopencm3/issues/732
 
 **For Ubuntu/Fedora:**
 
@@ -134,21 +136,12 @@ of them in the libopencm3-examples repository:
 
 https://github.com/libopencm3/libopencm3-examples
 
-If you just wish to test your toolchain and build environment, a collection of
-mini blink projects is available too.  This covers _many_ more boards, but, as
-the name suggests, only demonstrates blinking LEDs.
-
-
-https://github.com/libopencm3/libopencm3-miniblink
-
 Installation
 ------------
 
-Simply pass -I and -L flags to your own project.  See the
-[libopencm3-template](https://github.com/libopencm3/libopencm3-template)
-repository for a template repository using this library as a Git submodule,
-the most popular method of use.  The libopencm3-examples is another
-example of this.
+Simply pass -I and -L flags to your own project.  See the libopencm3-examples
+repository for an example of using this library as a Git submodule, the most
+popular method of use.
 
 It is strongly advised that you do not attempt to install this library to any
 path inside your toolchain itself.  While this means you don't have to include

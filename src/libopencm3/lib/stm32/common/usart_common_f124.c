@@ -1,5 +1,4 @@
 /** @addtogroup usart_file
-@ingroup peripheral_apis
 
 @author @htmlonly &copy; @endhtmlonly 2009 Uwe Hermann <uwe@hermann-uwe.de>
 

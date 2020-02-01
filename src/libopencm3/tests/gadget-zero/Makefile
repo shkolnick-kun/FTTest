@@ -9,7 +9,7 @@ all: $(GZ_ALL:=.all)
 clean: $(GZ_ALL:=.clean)
 
 %.all:
-	$(MAKE) -f $* all
+	make -f $* all
 %.clean:
-	$(MAKE) -f $* clean
+	make -f $* clean
 	

@@ -1,11 +1,3 @@
-/** @defgroup cmu_defines CMU Defines
- *
- * @brief <b>Defined Constants and Types for the EFM32HG Clock Management Unit</b>
- *
- * @ingroup EFM32HG_defines
- *
- * LGPL License Terms @ref lgpl_license
- */
 /*
  * This file is part of the libopencm3 project.
  *
@@ -26,9 +18,8 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**@{*/
-
-#pragma once
+#ifndef LIBOPENCM3_EFM32_CMU_H
+#define LIBOPENCM3_EFM32_CMU_H
 
 #include <libopencm3/efm32/memorymap.h>
 #include <libopencm3/cm3/common.h>
@@ -282,12 +273,12 @@
 #define CMU_AUXHFRCOCTRL_BAND_MASK	(0x7 << CMU_AUXHFRCOCTRL_BAND_SHIFT)
 #define CMU_AUXHFRCOCTRL_BAND(v)	\
 	(((v) << CMU_AUXHFRCOCTRL_BAND_SHIFT) & CMU_AUXHFRCOCTRL_BAND_MASK)
-#define CMU_AUXHFRCOCTRL_BAND_14MHZ	CMU_AUXHFRCOCTRL_BAND(0)
-#define CMU_AUXHFRCOCTRL_BAND_11MHZ	CMU_AUXHFRCOCTRL_BAND(1)
-#define CMU_AUXHFRCOCTRL_BAND_7MHZ	CMU_AUXHFRCOCTRL_BAND(2)
-#define CMU_AUXHFRCOCTRL_BAND_1MHZ	CMU_AUXHFRCOCTRL_BAND(3)
-#define CMU_AUXHFRCOCTRL_BAND_28MHZ	CMU_AUXHFRCOCTRL_BAND(6)
-#define CMU_AUXHFRCOCTRL_BAND_21MHZ	CMU_AUXHFRCOCTRL_BAND(7)
+#define CMU_AUXHFRCOCTRL_BAND_1MHZ	CMU_AUXHFRCOCTRL_BAND(0)
+#define CMU_AUXHFRCOCTRL_BAND_7MHZ	CMU_AUXHFRCOCTRL_BAND(1)
+#define CMU_AUXHFRCOCTRL_BAND_11MHZ	CMU_AUXHFRCOCTRL_BAND(2)
+#define CMU_AUXHFRCOCTRL_BAND_14MHZ	CMU_AUXHFRCOCTRL_BAND(3)
+#define CMU_AUXHFRCOCTRL_BAND_28MHZ	CMU_AUXHFRCOCTRL_BAND(4)
+#define CMU_AUXHFRCOCTRL_BAND_21MHZ	CMU_AUXHFRCOCTRL_BAND(5)
 
 #define CMU_AUXHFRCOCTRL_TUNING_SHIFT	(0)
 #define CMU_AUXHFRCOCTRL_TUNING_MASK	(0xFF << CMU_AUXHFRCOCTRL_TUNING_SHIFT)
@@ -361,7 +352,6 @@
 #define CMU_CMD_HFCLKSEL_HFXO		CMU_CMD_HFCLKSEL(2)
 #define CMU_CMD_HFCLKSEL_LFRCO		CMU_CMD_HFCLKSEL(3)
 #define CMU_CMD_HFCLKSEL_LFXO		CMU_CMD_HFCLKSEL(4)
-#define CMU_CMD_HFCLKSEL_USHFRCODIV2	CMU_CMD_HFCLKSEL(5)
 
 /* CMU_LFCLKSEL */
 /* Bits 31:21 - Reserved */
@@ -643,7 +633,6 @@ enum cmu_osc {
 	LFXO, /**< External, 32.768kHz */
 	AUXHFRCO, /**< Internal, 1-28Mhz */
 	USHFRCO, /**< Internal, 48MHz */
-	USHFRCODIV2, /**< Internal, 24MHz */
 };
 
 /* --- Function prototypes ------------------------------------------------- */
@@ -682,4 +671,4 @@ void cmu_wait_for_usbclk_selected(enum cmu_osc osc);
 
 END_DECLS
 
-/**@}*/
+#endif

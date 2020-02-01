@@ -1,5 +1,4 @@
-/** @addtogroup adc_file ADC peripheral API
-@ingroup peripheral_apis
+/** @addtogroup adc_file
 
 @author @htmlonly &copy; @endhtmlonly
 2016 Karl Palsson <karlp@tweak.net.au>

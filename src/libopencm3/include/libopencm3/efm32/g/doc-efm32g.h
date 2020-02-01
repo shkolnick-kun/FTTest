@@ -1,4 +1,4 @@
-/** @page libopencm3 EFM32 Gecko
+/** @mainpage libopencm3 EFM32 Gecko
 
 @version 1.0.0
 
@@ -18,10 +18,6 @@ Libraries for Energy Micro EFM32 Gecko series.
 
 LGPL License Terms @ref lgpl_license
 */
-
-/** @defgroup peripheral_apis Peripheral APIs
- * APIs for device peripherals
- */
 
 /** @defgroup EFM32G_defines EFM32 Gecko Defines
 

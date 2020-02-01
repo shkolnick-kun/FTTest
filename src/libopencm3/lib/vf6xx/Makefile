@@ -22,8 +22,10 @@ LIBNAME		= libopencm3_vf6xx
 SRCLIBDIR	?= ..
 
 FP_FLAGS	?= -mfloat-abi=hard -mfpu=fpv4-sp-d16
-CC		= $(PREFIX)gcc
-AR		= $(PREFIX)ar
+PREFIX		?= arm-none-eabi
+
+CC		= $(PREFIX)-gcc
+AR		= $(PREFIX)-ar
 TGT_CFLAGS	= -Os \
 		  -Wall -Wextra -Wimplicit-function-declaration \
 		  -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes \
@@ -34,11 +36,7 @@ TGT_CFLAGS	= -Os \
 TGT_CFLAGS      += $(DEBUG_FLAGS)
 TGT_CFLAGS	+= $(STANDARD_FLAGS)
 ARFLAGS		= rcs
-
-OBJS += ccm.o
-OBJS += gpio.o
-OBJS += iomuxc.o
-OBJS += uart.o
+OBJS		= ccm.o uart.o gpio.o iomuxc.o
 
 VPATH += ../cm3
 

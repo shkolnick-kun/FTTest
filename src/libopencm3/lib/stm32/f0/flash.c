@@ -1,6 +1,6 @@
-/** @defgroup flash_file FLASH peripheral API
+/** @defgroup flash_file FLASH
  *
- * @ingroup peripheral_apis
+ * @ingroup STM32F0xx
  *
  * @brief <b>libopencm3 STM32F05x FLASH</b>
  *
@@ -61,6 +61,7 @@ void flash_clear_status_flags(void)
 	flash_clear_pgerr_flag();
 	flash_clear_eop_flag();
 	flash_clear_wrprterr_flag();
+	flash_clear_bsy_flag();
 }
 
 /*---------------------------------------------------------------------------*/

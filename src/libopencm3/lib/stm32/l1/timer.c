@@ -1,5 +1,7 @@
-/** @defgroup timer_file TIMER peripheral API
-@ingroup peripheral_apis
+/** @defgroup timer_file Timers
+
+@ingroup STM32L1xx
+
 @brief <b>libopencm3 STM32L1xx Timers</b>
 
 @version 1.0.0
@@ -28,9 +30,9 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/timer.h>
-
 /**@{*/
+
+#include <libopencm3/stm32/timer.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief Set Timer Option
@@ -38,7 +40,8 @@
 Set timer options register on TIM2 or TIM3, used for trigger remapping.
 
 @param[in] timer_peripheral Unsigned int32. Timer register address base
-@param[in] option Desired option @ref tim2_opt_trigger_remap and @ref tim3_opt_trigger_remap
+@returns Unsigned int32. Option flags TIM2: @ref tim2_opt_trigger_remap, TIM3:
+@ref tim3_opt_trigger_remap.
 */
 
 void timer_set_option(uint32_t timer_peripheral, uint32_t option)

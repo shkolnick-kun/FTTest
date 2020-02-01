@@ -35,6 +35,8 @@ LGPL License Terms @ref lgpl_license
 
 /**@{*/
 
+#define I2C3				I2C3_BASE
+
 /**@}*/
 
 #endif

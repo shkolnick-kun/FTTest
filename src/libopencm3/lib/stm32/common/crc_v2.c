@@ -1,5 +1,4 @@
-/** @addtogroup crc_file CRC peripheral API
-@ingroup peripheral_apis
+/** @addtogroup crc_file CRC
 
  @author @htmlonly &copy; @endhtmlonly 2016 Cem Basoglu <cem.basoglu@web.de>
 

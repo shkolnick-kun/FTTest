@@ -1,13 +1,3 @@
-/** @addtogroup usb_file USB peripheral API
- * @ingroup peripheral_apis
- *
- * @brief USB Peripheral for Happy Gecko
- *
- * The Happy Gecko uses the "standard" usb_dwc_otg core.
- *
- * @sa usb_defines
- * @copyright See @ref lgpl_license
- */
 /*
  * This file is part of the libopencm3 project.
  *
@@ -37,8 +27,6 @@
 #include <libopencm3/usb/dwc/otg_fs.h>
 #include "usb_private.h"
 #include "usb_dwc_common.h"
-
-/**@{*/
 
 /* Receive FIFO size in 32-bit words. */
 #define RX_FIFO_SIZE 256
@@ -136,5 +124,3 @@ const struct _usbd_driver efm32hg_usb_driver = {
 	.set_address_before_status = 1,
 	.rx_fifo_size = RX_FIFO_SIZE,
 };
-
-/**@}*/

@@ -1,5 +1,3 @@
-/** @addtogroup gpio_defines
- */
 /*
  * This file is part of the libopencm3 project.
  *
@@ -19,12 +17,14 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+/** @cond */
+#if defined(LIBOPENCM3_GPIO_H)
+/** @endcond */
+#ifndef LIBOPENCM3_EFM32_GPIO_COMMON_HGLG_H
+#define LIBOPENCM3_EFM32_GPIO_COMMON_HGLG_H
 
 #include <libopencm3/efm32/memorymap.h>
 #include <libopencm3/cm3/common.h>
-
-/**@{*/
 
 #define GPIO_P(i)		(GPIO_BASE + (0x24 * (i)))
 #define GPIO_PA			GPIO_P(0)
@@ -329,4 +329,9 @@ void gpio_port_config_lock(uint32_t gpio_port, uint16_t gpios);
 
 END_DECLS
 
-/**@}*/
+#endif
+/** @cond */
+#else
+#warning "gpio_common_hglg.h should not be included explicitly, only via gpio.h"
+#endif
+/** @endcond */

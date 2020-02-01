@@ -1,11 +1,3 @@
-/** @defgroup usb_defines USB Defines
- *
- * @brief <b>Defined Constants and Types for the USB module</b>
- *
- * @ingroup EFM32HG_defines
- *
- * LGPL License Terms @ref lgpl_license
- */
 /*
  * This file is part of the libopencm3 project.
  *
@@ -26,12 +18,11 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#ifndef LIBOPENCM3_EFM32_USB_H
+#define LIBOPENCM3_EFM32_USB_H
 
 #include <libopencm3/cm3/common.h>
 #include <libopencm3/usb/dwc/otg_fs.h>
-
-/**@{*/
 
 #define USB_CTRL			MMIO32(USB_BASE + 0x000)
 #define USB_STATUS			MMIO32(USB_BASE + 0x004)
@@ -67,4 +58,4 @@
 /* Bit 1 - Reserved */
 #define USB_ROUTE_PHYPEN		(1 << 0)
 
-/**@}*/
+#endif

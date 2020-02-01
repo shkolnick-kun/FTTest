@@ -1,6 +1,4 @@
-/** @addtogroup hash_file HASH Peripheral API
- *
- * @ingroup peripheral_apis
+/** @addtogroup hash_file
  *
  * @author @htmlonly &copy; @endhtmlonly 2013
  * Mikhail Avkhimenia <mikhail@avkhimenia.net>
@@ -147,6 +145,7 @@ void hash_digest()
 Makes a copy of the resulting hash.
 
 @param[out] data unsigned int32. Hash 4\5 words long depending on the algorithm.
+@param[in] algorithm unsigned int8. Hash algorithm: @ref hash_algorithm
 */
 
 void hash_get_result(uint32_t *data)

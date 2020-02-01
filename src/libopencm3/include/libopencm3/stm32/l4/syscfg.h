@@ -81,7 +81,6 @@
 
 /* --- SYSCFG_EXTICR Values -------------------------------------------------*/
 
-#define SYSCFG_EXTICR_FIELDSIZE		4
 #define SYSCFG_EXTICR_GPIOA		0
 #define SYSCFG_EXTICR_GPIOB		1
 #define SYSCFG_EXTICR_GPIOC		2

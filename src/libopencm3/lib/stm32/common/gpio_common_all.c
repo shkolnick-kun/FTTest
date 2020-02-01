@@ -1,5 +1,4 @@
-/** @addtogroup gpio_file GPIO peripheral API
- * @ingroup peripheral_apis
+/** @addtogroup gpio_file
 
 @author @htmlonly &copy; @endhtmlonly 2009 Uwe Hermann <uwe@hermann-uwe.de>
 

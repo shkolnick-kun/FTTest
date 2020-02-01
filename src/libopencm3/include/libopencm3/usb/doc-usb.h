@@ -1,4 +1,4 @@
-/** @page libopencm3 Generic USB
+/** @mainpage libopencm3 Generic USB
 
 @version 1.0.0
 

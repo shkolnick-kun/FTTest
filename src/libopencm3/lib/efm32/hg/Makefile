@@ -24,8 +24,10 @@ LIBNAME		= libopencm3_efm32hg
 SRCLIBDIR	?= ../..
 FAMILY		= EFM32HG
 
-CC		= $(PREFIX)gcc
-AR		= $(PREFIX)ar
+PREFIX		?= arm-none-eabi
+#PREFIX		?= arm-elf
+CC		= $(PREFIX)-gcc
+AR		= $(PREFIX)-ar
 TGT_CFLAGS	= -Os \
 		  -Wall -Wextra -Wimplicit-function-declaration \
 		  -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes \
@@ -38,12 +40,9 @@ TGT_CFLAGS	+= $(STANDARD_FLAGS)
 
 ARFLAGS		= rcs
 
-OBJS += cmu.o
-OBJS += gpio_common.o
-OBJS += timer_common.o
-
-OBJS += usb.o usb_control.o usb_standard.o usb_msc.o
-OBJS += usb_dwc_common.o usb_efm32hg.o
+OBJS		= cmu.o gpio_common_hglg.o timer_common_hglg.o
+OBJS		+= usb.o usb_control.o usb_standard.o usb_msc.o \
+		   usb_dwc_common.o usb_efm32hg.o
 
 VPATH += ../../usb:../:../../cm3:../common
 

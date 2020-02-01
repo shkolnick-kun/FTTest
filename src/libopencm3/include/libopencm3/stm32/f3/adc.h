@@ -37,8 +37,6 @@
 #include <libopencm3/stm32/common/adc_common_v2.h>
 #include <libopencm3/stm32/common/adc_common_v2_multi.h>
 
-/**@{*/
-
 /** @defgroup adc_reg_base ADC register base addresses
 @ingroup STM32xx_adc_defines
 @{*/
@@ -553,6 +551,5 @@ bool adc_awd(uint32_t adc);
 
 END_DECLS
 
-/**@}*/
 
 #endif

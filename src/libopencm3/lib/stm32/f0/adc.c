@@ -1,5 +1,8 @@
-/** @addtogroup adc_file ADC peripheral API
- * @ingroup peripheral_apis
+/** @defgroup adc_file ADC
+ *
+ * @ingroup STM32F0xx
+ *
+ * @brief <b>libopencm3 STM32F0xx Analog to Digital Converters</b>
  *
  * based on F3 file
  *
@@ -117,7 +120,7 @@ void adc_disable_discontinuous_mode(uint32_t adc)
  * @par
  *
  * @param[in] adc Unsigned int32. ADC base address (@ref adc_reg_base)
- * @param[in] opmode ADC operation mode
+ * @param[in] adc ::adc_opmode. ADC operation mode (@ref adc_opmode)
  */
 
 void adc_set_operation_mode(uint32_t adc, enum adc_opmode opmode)
@@ -277,16 +280,6 @@ bool adc_get_eoc_sequence_flag(uint32_t adc)
 	return ADC_ISR(adc) & ADC_ISR_EOSEQ;
 }
 
-/*---------------------------------------------------------------------------*/
-/** @brief ADC Clear Regular End-Of-Conversion Sequence Flag
- *
- * @param[in] adc Unsigned int32. ADC base address (@ref adc_reg_base)
- */
-
-void adc_clear_eoc_sequence_flag(uint32_t adc)
-{
-	ADC_ISR(adc) = ADC_ISR_EOSEQ;
-}
 
 /**@}*/
 
@@ -301,12 +294,12 @@ void adc_clear_eoc_sequence_flag(uint32_t adc)
  *@{*/
 
 /*---------------------------------------------------------------------------*/
-/** @brief ADC Set Clock Source
+/** @brief ADC Set Clock Prescale
  *
  * The ADC clock taken from the many sources.
  *
  * @param[in] adc Unsigned int32. ADC base address (@ref adc_reg_base)
- * @param[in] source Unsigned int32. Source (@ref adc_api_clksource)
+ * @param[in] prescale Unsigned int32. Prescale value (@ref adc_api_clksource)
  */
 
 void adc_set_clk_source(uint32_t adc, uint32_t source)

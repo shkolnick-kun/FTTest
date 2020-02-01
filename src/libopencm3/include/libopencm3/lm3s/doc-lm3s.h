@@ -1,4 +1,4 @@
-/** @page libopencm3 LM3S
+/** @mainpage libopencm3 LM3S
 
 @version 1.0.0
 

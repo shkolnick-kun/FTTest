@@ -243,8 +243,7 @@
 #define RCC_CIR_LSERDYF				(1 << 1)
 #define RCC_CIR_LSIRDYF				(1 << 0)
 
-/** @defgroup rcc_ahbrstr_rst RCC_AHBRSTR reset values values
-@{*/
+/* --- RCC_AHBRSTR values ------------------------------------------------- */
 #define RCC_AHBRSTR_DMA1RST			(1 << 24)
 #define RCC_AHBRSTR_FLITFRST			(1 << 15)
 #define RCC_AHBRSTR_CRCRST			(1 << 12)
@@ -254,10 +253,9 @@
 #define RCC_AHBRSTR_GPIOCRST			(1 << 2)
 #define RCC_AHBRSTR_GPIOBRST			(1 << 1)
 #define RCC_AHBRSTR_GPIOARST			(1 << 0)
-/**@}*/
 
-/** @defgroup rcc_apb2rstr_rst RCC_APB2RSTR reset values values
-@{*/
+/* --- RCC_APB2RSTR values ------------------------------------------------- */
+
 #define RCC_APB2RSTR_USART1RST			(1 << 14)
 #define RCC_APB2RSTR_SPI1RST			(1 << 12)
 #define RCC_APB2RSTR_ADC1RST			(1 << 9)
@@ -265,10 +263,9 @@
 #define RCC_APB2RSTR_TIM10RST			(1 << 3)
 #define RCC_APB2RSTR_TIM9RST			(1 << 2)
 #define RCC_APB2RSTR_SYSCFGRST			(1 << 0)
-/**@}*/
 
-/** @defgroup rcc_apb1rstr_rst RCC_APB1RSTR reset values values
-@{*/
+/* --- RCC_APB1RSTR values ------------------------------------------------- */
+
 #define RCC_APB1RSTR_COMPRST			(1 << 31)
 #define RCC_APB1RSTR_DACRST			(1 << 29)
 #define RCC_APB1RSTR_PWRRST			(1 << 28)
@@ -286,7 +283,6 @@
 #define RCC_APB1RSTR_TIM4RST			(1 << 2)
 #define RCC_APB1RSTR_TIM3RST			(1 << 1)
 #define RCC_APB1RSTR_TIM2RST			(1 << 0)
-/**@}*/
 
 /* --- RCC_AHBENR values --------------------------------------------------- */
 
