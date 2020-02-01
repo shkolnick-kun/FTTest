@@ -41,12 +41,13 @@
 			<Add option="-fno-builtin" />
 			<Add option="-ffunction-sections" />
 			<Add option="-fdata-sections" />
-			<Add directory="../../src/bugurtos/kernel" />
 			<Add directory="../../src/test" />
 			<Add directory="../../src/libopencm3/include" />
-			<Add directory="../../src/bugurtos/libs/native" />
-			<Add directory="../../src/bugurtos/arch/cm4f/gcc" />
+			<Add directory="../../src/bugurtos/kernel" />
 			<Add directory="../../src/bugurtos/kernel/default" />
+			<Add directory="../../src/bugurtos/arch/common" />
+			<Add directory="../../src/bugurtos/arch/cm4f/gcc" />
+			<Add directory="../../src/bugurtos/libs/native" />
 		</Compiler>
 		<Linker>
 			<Add option="-mthumb" />
@@ -65,6 +66,8 @@
 		<Unit filename="../../src/bugurtos/arch/cm4f/gcc/bugurt_port.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../../src/bugurtos/arch/cm4f/gcc/bugurt_port.h" />
+		<Unit filename="../../src/bugurtos/arch/common/atm_cortex_m34_1.h" />
 		<Unit filename="../../src/bugurtos/kernel/bugurt.h" />
 		<Unit filename="../../src/bugurtos/kernel/crit_sec.c">
 			<Option compilerVar="CC" />

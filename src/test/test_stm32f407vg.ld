@@ -24,13 +24,16 @@ GROUP(libgcc.a libc.a libm.a)
 MEMORY
 {
   rom (rx)  : ORIGIN = 0x08000000, LENGTH = 1024K
-  /*We need to place "Hello world" to 0x20001234 adress*/
-  ram (rwx) : ORIGIN = 0x20001234, LENGTH = 126K
+  ram (rwx) : ORIGIN = 0x20000000, LENGTH = 128K
   ccm (rwx) : ORIGIN = 0x10000000, LENGTH = 64K
 }
 
 /* Enforce emmition of the vector table. */
 EXTERN (vector_table)
+
+/* Enforce emmition of "Hello world" string and padding.*/
+EXTERN (padding)
+EXTERN (hello)
 
 /* Define the entry point of the output file. */
 ENTRY(reset_handler)
@@ -87,6 +90,7 @@ SECTIONS
 
 	.data : {
 		_data = .;
+		*(.padding_data*)/* Read-write initialized padding data */
 		*(.hello_data*)	/* Read-write initialized "Hello world" data */
 		*(.data*)	/* Read-write initialized data */
 		. = ALIGN(4);

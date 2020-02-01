@@ -1,6 +1,9 @@
 #include <test_func.h>
 #include <sem.h>
 
+volatile char __attribute__ ((section (".padding_data"))) padding[0x1234] = {0};
+volatile char __attribute__ ((section (".hello_data")))   hello[]  = "HELLO WORLD";
+
 bgrt_proc_t proc[6];
 bgrt_stack_t bgrt_proc_stack[6][BGRT_PROC_STACK_SIZE];
 
