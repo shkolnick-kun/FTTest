@@ -72,23 +72,15 @@ typedef volatile unsigned char bgrt_syscall_t;
 #define BGRT_CONFIG_CRITSEC_PRIO 	 3 /*Critical section priority*/
 #define BGRT_CONFIG_SCHED_PRIO 		 3 /*Scheduler priority*/
 
-#define BGRT_PROC_STACK_SIZE 128
-
-#define LOWEST (BGRT_BITS_IN_INDEX_T - 1)
+#define BGRT_PROC_STACK_SIZE (128)
 
 #define PID0 BGRT_PROC_TO_PID(&proc[0])
 #define PID1 BGRT_PROC_TO_PID(&proc[1])
 #define PID2 BGRT_PROC_TO_PID(&proc[2])
-#define PID3 BGRT_PROC_TO_PID(&proc[3])
-#define PID4 BGRT_PROC_TO_PID(&proc[4])
-#define PID5 BGRT_PROC_TO_PID(&proc[5])
 
 #define PR0 (&proc[0])
 #define PR1 (&proc[1])
 #define PR2 (&proc[2])
-#define PR3 (&proc[3])
-#define PR4 (&proc[4])
-#define PR5 (&proc[5])
 
 #define SVH0 (bgrt_code_t)0
 #define RSH0 (bgrt_code_t)0
@@ -98,15 +90,6 @@ typedef volatile unsigned char bgrt_syscall_t;
 
 #define SVH2 (bgrt_code_t)0
 #define RSH2 (bgrt_code_t)0
-
-#define SVH3 (bgrt_code_t)0
-#define RSH3 (bgrt_code_t)0
-
-#define SVH4 (bgrt_code_t)0
-#define RSH4 (bgrt_code_t)0
-
-#define SVH5 (bgrt_code_t)0
-#define RSH5 (bgrt_code_t)0
 
 /**================================================================*/
 /**               Don't edit this part of the file!!!              */

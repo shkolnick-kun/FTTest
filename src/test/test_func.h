@@ -2,9 +2,6 @@
 
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
-//#include <libopencm3/stm32/timer.h>
-//#include <libopencm3/cm3/nvic.h>
-//#include <libopencm3/stm32/exti.h>
 
 /* stm32f4-discovery LEDS */
 #define GREEN  GPIO12
@@ -16,10 +13,6 @@
 #define LED_OFF(CL) gpio_clear(GPIOD, CL)
 
 void init_hardware(void);
-
-extern bgrt_proc_t proc[6];
-extern bgrt_stack_t bgrt_proc_stack[6][BGRT_PROC_STACK_SIZE];
-
 
 #define TM_UNIT (200)
 
