@@ -6,7 +6,7 @@ This is FT test project. Let's write this "Hello world!"
  * IDE - [Code::Blocks](http://www.codeblocks.org/)
  * Toolchain - [GNU ARM None Eabi](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
  * Drivers - [libopencm3](https://github.com/libopencm3/libopencm3)
- * Board - [stm32f407-discovery](https://www.st.com/content/ccc/resource/technical/document/reference_manual/3d/6d/5a/66/b4/99/40/d4/DM00031020.pdf/files/DM00031020.pdf/jcr:content/translations/en.DM00031020.pdf).
+ * Board - [stm32f4discovery](https://www.st.com/en/evaluation-tools/stm32f4discovery.html).
 
 ## Dirs ##
  * [lib](./lib) - for binary libs.
